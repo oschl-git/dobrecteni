@@ -1,12 +1,15 @@
 <?php
 
+require_once '../authentication/user.php';
+require_once '../authentication/authentication_actions.php';
+require_once '../database/database_access.php';
+
 session_start();
 
-require '../account.php';
-require '../database_access.php';
-
-
-$account = new Account();
+if (isset($_SESSION['user'])) {
+	header('Location: ./booklist.php');
+	exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$data;
@@ -18,7 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	try
 	{
-		$account->addUser($data['username'], $data['password']);
+		addUser($data['username'], $data['password']);
+		header('Location: ./login.php');
+		exit();
 	}
 	catch (Exception $e)
 	{
@@ -39,7 +44,7 @@ function validate_input($data) {
 <html lang="cs">
 	<body>
 		<h1>Register page</h1>
-		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+		<form method="POST" name="register-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 			<div>
 				<label for="username">Username: </label>
 				<input type="text" name="username" id="username" required>

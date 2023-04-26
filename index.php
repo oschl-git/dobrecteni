@@ -1,3 +1,12 @@
+<?php
+	session_start();
+
+	if (isset($_SESSION['user'])) {
+		header('Location: ./views/booklist.php');
+		exit();
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="cs">
 	<body>
