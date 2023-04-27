@@ -2,7 +2,7 @@
 
 require_once '../authentication/user.php';
 require_once '../authentication/authentication_actions.php';
-require_once '../database/database_access.php';
+require_once '../data/database_access.php';
 
 session_start();
 
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	try
 	{
 		addUser($data['username'], $data['password']);
-		header('Location: ./login.php');
+		header('Location: ./login.php?registered');
 		exit();
 	}
 	catch (Exception $e)

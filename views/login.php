@@ -2,7 +2,7 @@
 
 require_once '../authentication/user.php';
 require_once '../authentication/authentication_actions.php';
-require_once '../database/database_access.php';
+require_once '../data/database_access.php';
 
 session_start();
 
