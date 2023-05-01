@@ -1,5 +1,5 @@
 <?php
-// This script handles accessing the MySQL database.
+// This script handles accessing the MariaDB database.
 
 $host = 'localhost';
 $user = 'root';

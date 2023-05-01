@@ -6,6 +6,8 @@ require_once '../data/database_access.php';
 
 session_start();
 
+$error;
+
 if (isset($_SESSION['user'])) {
 	header('Location: ./booklist.php');
 	exit();
@@ -27,8 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 	catch (Exception $e)
 	{
-		echo $e->getMessage();
-		die();
+		$error = $e->getMessage();
 	}
 }
  
@@ -42,7 +43,14 @@ function validate_input($data) {
 
 <!DOCTYPE html>
 <html lang="cs">
+	<head>
+		<link rel="stylesheet" href="../css/global.css">
+	</head>
 	<body>
+		<?php if (isset($error)) { ?>
+		<p><?php echo $error ?></p>
+		<?php } ?>
+
 		<h1>Register page</h1>
 		<form method="POST" name="register-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 			<div>

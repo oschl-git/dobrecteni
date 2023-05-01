@@ -4,6 +4,8 @@ require_once '../authentication/user.php';
 require_once '../authentication/authentication_actions.php';
 require_once '../data/database_access.php';
 
+$error;
+
 session_start();
 
 if (isset($_SESSION['user'])) {
@@ -25,8 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		exit();
 	}
 	catch (Exception $e) {
-		echo $e->getMessage();
-		die();
+		$error = $e->getMessage();
 	}
 }
  
@@ -40,7 +41,14 @@ function validate_input($data) {
 
 <!DOCTYPE html>
 <html lang="cs">
+	<head>
+		<link rel="stylesheet" href="../css/global.css">
+	</head>
 	<body>
+		<?php if (isset($error)) { ?>
+		<p><?php echo $error ?></p>
+		<?php } ?>
+
 		<h1>Login page</h1>
 		<form method="POST" name="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 			<div>
