@@ -9,6 +9,9 @@
 
 <!DOCTYPE html>
 <html lang="cs">
+	<head>
+		<link rel="stylesheet" href="css/global.css">
+	</head>
 	<body>
 		<h1>Dobréčtení</h1>
 		<a href="views/login.php">Login</a>

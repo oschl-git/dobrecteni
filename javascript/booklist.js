@@ -25,6 +25,19 @@ const detailsFields = {
 	cover: document.querySelector('#details-cover'),
 };
 
+const editFields = {
+	name: document.querySelector('#edit-name'), 
+	author: document.querySelector('#edit-author'), 
+	genre: document.querySelector('#edit-genre'), 
+	read: document.querySelector('#edit-read'), 
+	rating: document.querySelector('#edit-rating'), 
+	isbn: document.querySelector('#edit-isbn'), 
+	datePublished: document.querySelector('#edit-date'), 
+	pages: document.querySelector('#edit-pages'), 
+	notes: document.querySelector('#edit-notes'),
+	id: document.querySelector('#edit-book-id'),
+};
+
 const deleteFields = {
 	name: document.querySelector('#delete-name'), 
 	id: document.querySelector('#delete-book-id'),
@@ -78,6 +91,21 @@ function showDetails(clickedElement = null) {
 }
 
 function editBook(clickedElement) {
+	if (clickedElement != null) currentBook = books[clickedElement.getAttribute('data-book-index')];
+	
+	editFields['name'].value = currentBook['name'];
+	editFields['author'].value = currentBook['author'];
+	editFields['genre'].value = currentBook['genre'];
+	editFields['author'].value = currentBook['author'];
+	editFields['read'].checked = currentBook['read'];
+	editFields['rating'].value = currentBook['rating'];
+	editFields['isbn'].value = currentBook['isbn'];
+	editFields['datePublished'].value = currentBook['date_published'];
+	editFields['pages'].value = currentBook['pages'];
+	editFields['notes'].value = currentBook['notes'];
+
+	editFields['id'].setAttribute('value', currentBook['id']);
+	
 	showContainer('edit');
 }
 
