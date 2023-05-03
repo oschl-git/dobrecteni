@@ -1,0 +1,20 @@
+Beruško, takže:
+
+
+- User login: karel, password: megaboymegaboy
+
+- nezapomeň na overflow textu. Věci mohou být příliš dlouhý. Ve front-endu vyřeš, aby se při mega 
+dlouhém textu udělalo ... a neposralo se UI.
+
+- když uživatel submitne knihu a neprojde to v backendu, tak mu to smaže vše, co tam zadal, což je 
+velice annoying. Buď vyřeš, aby se ta data nějak ukládala do localstorage nebo cookies or idk, a 
+nebo udělej checkování inputů už v JS, aby tam nikdy nemohlo být sumbitnuté něco, co se backendu 
+nebude líbit.
+
+- nezapomeň udělat sortování knížek.
+
+- vyřeš knihy, co nemají covery z toho API, dej jim nějaký default img
+
+- Rating, ISBN, pages a notes můžou být null (uživatel je nemusí vyplňovat.) UI s tím musí počítat.
+
+- Někde na tom webu dej credit OpenLibrary za jejich cover API.

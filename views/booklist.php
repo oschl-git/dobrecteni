@@ -1,55 +1,87 @@
 <?php
-	require_once '../authentication/user.php';
-	require_once '../data/database_access.php';
-	require_once '../data/book.php';
+// This is the booklist view.
 
-	session_start();
+require_once '../authentication/user.php';
+require_once '../data/database_access.php';
+require_once '../data/book.php';
 
-	if (!isset($_SESSION['user'])) {
-		header('Location: ./login.php');
-		exit();
-	}
+session_start();
+
+// Backend feedback variables:
+$error;
+$success;
+
+// Redirects to the login page if no user is logged in.
+if (!isset($_SESSION['user'])) {
+	header('Location: ./login.php');
+	exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
-	if (isset($_POST['delete-book'])) {
-		deleteBookFromDatabase($_POST['delete-book-id'], $_SESSION['user']->getId());
-	}
-
+	// Handles the add-book POST request.
 	if (isset($_POST['add-book'])) {
-		addBookToDatabase(
-			$_SESSION['user']->getId(),
-			$_POST['add-name'],
-			$_POST['add-author'],
-			$_POST['add-genre'],
-			isset($_POST['add-read']) ? true : false,
-			$_POST['add-rating'] != '' ? (int)$_POST['add-rating'] : null,
-			$_POST['add-isbn'] != '' ? $_POST['add-isbn'] : null,
-			$_POST['add-date'] != '' ? $_POST['add-date'] : null,
-			$_POST['add-pages'] != '' ? (int)$_POST['add-pages'] : null,
-			$_POST['add-notes'] != '' ? $_POST['add-notes'] : null,
-		);
+		try {
+			addBookToDatabase(
+				validate_input($_SESSION['user']->getId()),
+				validate_input($_POST['add-name']),
+				validate_input($_POST['add-author']),
+				validate_input($_POST['add-genre']),
+				isset($_POST['add-read']) ? true : false,
+				$_POST['add-rating'] != '' ? validate_input((int)$_POST['add-rating']) : null,
+				$_POST['add-isbn'] != '' ? validate_input($_POST['add-isbn']) : null,
+				$_POST['add-date'] != '' ? validate_input($_POST['add-date']) : null,
+				$_POST['add-pages'] != '' ? validate_input((int)$_POST['add-pages']) : null,
+				$_POST['add-notes'] != '' ? validate_input($_POST['add-notes']) : null,
+			);
+			$success = 'Book ' . validate_input($_POST['add-name']) . ' successfully added.';
+		}
+		catch (Exception $e) {
+			$error = $e->getMessage();
+		}
 	}
 
-	if (isset($_POST['edit-book'])) {
-		editBookInDatabase(
-			$_POST['edit-book-id'],
-			$_SESSION['user']->getId(),
-			$_POST['edit-name'],
-			$_POST['edit-author'],
-			$_POST['edit-genre'],
-			isset($_POST['edit-read']) ? true : false,
-			$_POST['edit-rating'] != '' ? (int)$_POST['edit-rating'] : null,
-			$_POST['edit-isbn'] != '' ? $_POST['edit-isbn'] : null,
-			$_POST['edit-date'] != '' ? $_POST['edit-date'] : null,
-			$_POST['edit-pages'] != '' ? (int)$_POST['edit-pages'] : null,
-			$_POST['edit-notes'] != '' ? $_POST['edit-notes'] : null,
-		);
+	// Handles the edit-book POST request.
+	else if (isset($_POST['edit-book'])) {
+		try {
+			editBookInDatabase(
+				validate_input($_POST['edit-book-id']),
+				validate_input($_SESSION['user']->getId()),
+				validate_input($_POST['edit-name']),
+				validate_input($_POST['edit-author']),
+				validate_input($_POST['edit-genre']),
+				isset($_POST['edit-read']) ? true : false,
+				isset($_POST['edit-rating']) ? validate_input((int)$_POST['edit-rating']) : null,
+				$_POST['edit-isbn'] != '' ? validate_input($_POST['edit-isbn']) : null,
+				$_POST['edit-date'] != '' ? validate_input($_POST['edit-date']) : null,
+				$_POST['edit-pages'] != '' ? validate_input((int)$_POST['edit-pages']) : null,
+				$_POST['edit-notes'] != '' ? validate_input($_POST['edit-notes']) : null,
+			);
+			$success = 'Book ' . validate_input($_POST['edit-name']) . ' successfully modified.';
+		}
+		catch (Exception $e) {
+			$error = $e->getMessage();
+		}
 	}
 
-	if (isset($_POST['logout'])) {
+	// Handles the delete-book POST request.
+	else if (isset($_POST['delete-book'])) {
+		try {
+			deleteBookFromDatabase($_POST['delete-book-id'], $_SESSION['user']->getId());
+			$success = 'Book successfully deleted.';
+		}
+		catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+	}
+
+	// Handles the log-out POST request.
+	else if (isset($_POST['logout'])) {
 		$_SESSION['user'] = null;
 		header('Location: ./login.php');
 		exit();
 	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +94,14 @@
 		<form method="POST" name="logout" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 			<button type="sumbit" name="logout">Logout</button>
 		</form>
+
+		<!-- Shows backend feedback: -->
+		<?php if (isset($error)) { ?>
+		<p id="error-message" style="color: red"><?php echo $error ?></p>
+		<?php } ?>
+		<?php if (isset($success)) { ?>
+		<p id="success-message" style="color: green"><?php echo $success ?></p>
+		<?php } ?>
 
 		<h1><?php echo htmlspecialchars($_SESSION['user']->getUsername()); ?>'s books:</h1>
 
@@ -78,6 +118,8 @@
 
 		<button type="button" onclick="addBook(this)">+ Add book</button>
 
+
+		<!-- Container for showing book details. -->
 		<div id="details-container" style="display: none">
 			<h1>Book details</h1>
 			<p>Name: <span id="details-name"></span></p>
@@ -90,9 +132,12 @@
 			<p>Pages: <span id="details-pages"></span></p>
 			<p>Notes: <span id="details-notes"></span></p>
 			<img id="details-cover" src="" alt="Cover image">
+			<button type="button" onclick="editBook()">Edit</button>
 			<button type="button" onclick="hideAllContainers()">Close</button>
 		</div>
 
+
+		<!-- Container for editing books. -->
 		<div id="edit-container" style="display: none">
 			<h1>Book editing</h1>
 			<form method="POST" name="edit-book" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -151,6 +196,8 @@
 			</form>
 		</div>
 		
+
+		<!-- Container for deleting books. -->
 		<div id="delete-container" style="display: none">
 			<h1>Book deletion</h1>
 			<p>Are you sure you want to delete <span id="delete-name"></span>?</p>
@@ -161,6 +208,8 @@
 			<button type="button" onclick="hideAllContainers()">Cancel</button>
 		</div>
 
+
+		<!-- Container for adding new books. -->
 		<div id="add-container" style="display: none">
 			<h1>Adding new book</h1>
 			<form method="POST" name="add-book" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -217,8 +266,10 @@
 				<button type="button" onclick="hideAllContainers()">Cancel</button>
 			</form>
 		</div>
-
 		<script>
+			// This script is used to initialise variables with data received from PHP. It must be
+			// above all external scripts that utilise them.
+
 			let books = <?php echo json_encode(getArrayOfBooksForID($_SESSION['user']->getId()))?>;
 			let phpSelf = '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>';
 		</script>

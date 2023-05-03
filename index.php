@@ -1,10 +1,5 @@
 <?php
-	session_start();
-
-	if (isset($_SESSION['user'])) {
-		header('Location: ./views/booklist.php');
-		exit();
-	}
+// This is the index view.
 ?>
 
 <!DOCTYPE html>

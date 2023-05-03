@@ -4,7 +4,6 @@
 // Node references:
 const bookTable = document.querySelector('#book-table');
 
-
 const containers = {
 	details: document.querySelector('#details-container'),
 	edit: document.querySelector('#edit-container'),
@@ -46,8 +45,16 @@ const deleteFields = {
 // Variables:
 let currentBook;
 
-showBoooksFromArray(books);
 
+onLoadActions();
+
+
+// Executes functions on page load.
+function onLoadActions() {
+	showBoooksFromArray(books);
+}
+
+// Displays books from the provided array on the page.
 function showBoooksFromArray(array) {
 	let index = 0;
 	for (const book of array) {
@@ -56,6 +63,7 @@ function showBoooksFromArray(array) {
 	}
 }
 
+// Displays a single book on the page.
 function showBook(book, index) {
 	bookTable.innerHTML += `
 		<tr>
@@ -72,6 +80,8 @@ function showBook(book, index) {
 		</tr>`;
 }
 
+// Shows the details container, fills it with correct data. If the clicked element contains the
+// 'data-book-index' attribute, its value is used to change the current book.
 function showDetails(clickedElement = null) {
 	if (clickedElement != null) currentBook = books[clickedElement.getAttribute('data-book-index')];
 
@@ -85,11 +95,13 @@ function showDetails(clickedElement = null) {
 	detailsFields['pages'].innerHTML = currentBook['pages'];
 	detailsFields['notes'].innerHTML = currentBook['notes'];
 
-	detailsFields['cover'].setAttribute('src', 'https://covers.openlibrary.org/b/isbn/' + currentBook['isbn'] + '-M.jpg');
+	detailsFields['cover'].setAttribute('src', getCoverSrcFromIsbn(currentBook['isbn'], 'M'));
 
 	showContainer('details');
 }
 
+// Shows the edit container, fills it with correct data. If the clicked element contains the
+// 'data-book-index' attribute, its value is used to change the current book.
 function editBook(clickedElement) {
 	if (clickedElement != null) currentBook = books[clickedElement.getAttribute('data-book-index')];
 	
@@ -109,6 +121,8 @@ function editBook(clickedElement) {
 	showContainer('edit');
 }
 
+// Shows the delete container, fills it with correct data. If the clicked element contains the
+// 'data-book-index' attribute, its value is used to change the current book.
 function deleteBook(clickedElement) {
 	if (clickedElement != null) currentBook = books[clickedElement.getAttribute('data-book-index')];
 
@@ -118,17 +132,28 @@ function deleteBook(clickedElement) {
 	showContainer('delete');
 }
 
+// Shows the add container, fills it with correct data. If the clicked element contains the
+// 'data-book-index' attribute, its value is used to change the current book.
 function addBook(clickedElement) {
 	showContainer('add');
 }
 
+// Changes the visibility of all containers to none, except the provided one, which it changes to
+// 'block'.
 function showContainer(name) {
 	hideAllContainers();
 	containers[name].style.display = 'block';
 }
 
+// Changes the visibility of all containers to none.
 function hideAllContainers() {
 	for (const container of Object.values(containers)) {
 		container.style.display = 'none';
 	}
+}
+
+// Returns the cover for the provided ISBN, if it exist. Size can be specified. Possible values: 
+// 'S', 'M', 'L'.
+function getCoverSrcFromIsbn(isbn, size) {
+	return 'https://covers.openlibrary.org/b/isbn/' + isbn + '-' + size + '.jpg?default=false';
 }

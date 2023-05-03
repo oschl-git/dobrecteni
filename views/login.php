@@ -1,18 +1,22 @@
 <?php
+// This is the login view.
 
 require_once '../authentication/user.php';
 require_once '../authentication/authentication_actions.php';
 require_once '../data/database_access.php';
 
-$error;
-
 session_start();
 
+// Backend feedback variables:
+$error;
+
+// Redirects to the booklist page if user already logged in.
 if (isset($_SESSION['user'])) {
 	header('Location: ./booklist.php');
 	exit();
 }
 
+// Handles logging in.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$data;
 
@@ -30,13 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$error = $e->getMessage();
 	}
 }
- 
-function validate_input($data) {
-	$data = trim($data);
-	$data = stripslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
-}
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +42,7 @@ function validate_input($data) {
 		<link rel="stylesheet" href="../css/global.css">
 	</head>
 	<body>
+		<!-- Shows backend feedback: -->
 		<?php if (isset($error)) { ?>
 		<p><?php echo $error ?></p>
 		<?php } ?>

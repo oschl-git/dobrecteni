@@ -18,4 +18,13 @@ catch (PDOException $e) {
    print_r($e);
    die();
 }
+
+// Makes sure the provided input doesn't contain anything sus.
+function validate_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+
 ?>
