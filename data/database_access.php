@@ -1,17 +1,19 @@
 <?php
 // This script handles accessing the MariaDB database.
 
-$host = 'localhost';
-$user = 'root';
-$passwd = '';
-$schema = 'dobrecteni';
+$config = include '../config.php';
+
+$host = $config['host'];
+$username = $config['username'];
+$password = $config['password'];
+$schema = $config['schema'];
 
 $pdo = NULL;
 
 $dsn = 'mysql:host=' . $host . ';dbname=' . $schema;
 
 try {  
-   $pdo = new PDO($dsn, $user,  $passwd);
+   $pdo = new PDO($dsn, $username,  $password);
    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e) {

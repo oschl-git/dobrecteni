@@ -46,6 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<?php if (isset($error)) { ?>
 		<p><?php echo $error ?></p>
 		<?php } ?>
+		<?php if (isset($_GET['registered'])) { ?>
+		<p>Successfully registered. Please, log in.</p>
+		<?php } ?>
 
 		<h1>Login page</h1>
 		<form method="POST" name="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

@@ -132,8 +132,7 @@ function deleteBook(clickedElement) {
 	showContainer('delete');
 }
 
-// Shows the add container, fills it with correct data. If the clicked element contains the
-// 'data-book-index' attribute, its value is used to change the current book.
+// Shows the add container.
 function addBook(clickedElement) {
 	showContainer('add');
 }
