@@ -1,8 +1,6 @@
 Beruško, takže:
 
 
-- Test user login: karel, password: megaboymegaboy
-
 - nezapomeň na overflow textu. Věci mohou být příliš dlouhý. Ve front-endu vyřeš, aby se při mega 
 dlouhém textu udělalo ... a neposralo se UI.
 
