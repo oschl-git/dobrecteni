@@ -1,7 +1,7 @@
 Beruško, takže:
 
 
-- User login: karel, password: megaboymegaboy
+- Test user login: karel, password: megaboymegaboy
 
 - nezapomeň na overflow textu. Věci mohou být příliš dlouhý. Ve front-endu vyřeš, aby se při mega 
 dlouhém textu udělalo ... a neposralo se UI.
@@ -18,3 +18,7 @@ nebude líbit.
 - Rating, ISBN, pages a notes můžou být null (uživatel je nemusí vyplňovat.) UI s tím musí počítat.
 
 - Někde na tom webu dej credit OpenLibrary za jejich cover API.
+
+- Dej uživateli vědět správné parametry uživatelského jména a hesla, jak u registrace, tak na
+stránce settings. Heslo musí být aspoň 8 znaků dlouhé a kratší než 64, username musí být aspoň
+2 dlouhé a také kratší než 64.

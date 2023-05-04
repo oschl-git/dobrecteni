@@ -18,6 +18,10 @@ class User {
 	public function getUsername(): string {
 		return $this->username;
 	}
+
+	public function setUsername(string $value): void {
+		$this->username = $value;
+	}
 }
 
 ?>

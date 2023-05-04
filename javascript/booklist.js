@@ -1,3 +1,4 @@
+// variables from PHP:
 // let books = array of books from the database
 // let phpSelf = refers to this page
 
@@ -132,7 +133,7 @@ function deleteBook(clickedElement) {
 	showContainer('delete');
 }
 
-// Shows the add container.
+// Shows the add book container.
 function addBook(clickedElement) {
 	showContainer('add');
 }

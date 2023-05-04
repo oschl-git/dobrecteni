@@ -221,15 +221,19 @@ function bookValidityChecks(
 	};
 
 	// ISBN:
-	$isbnLength = mb_strlen($isbn);
-	if ($isbnLength != 10 && $isbnLength != 13) throw new Exception('ISBN must be 10 or 13 characters long.');
+	if (isset($isbn)) {
+		$isbnLength = mb_strlen($isbn);
+		if ($isbnLength != 10 && $isbnLength != 13) throw new Exception('ISBN must be 10 or 13 characters long.');
+	}
 	
 	// Notes:
-	$lengthCheck = hasLengthInInterval($notes, 0, 2000);
-	if ($lengthCheck != 0) match ($lengthCheck) {
-		-1 => throw new Exception('Notes are short.'),
-		1 => throw new Exception('Notes are too long (2000 character limit).'),
-	};
+	if (isset($notes)) {
+		$lengthCheck = hasLengthInInterval($notes, 0, 2000);
+		if ($lengthCheck != 0) match ($lengthCheck) {
+			-1 => throw new Exception('Notes are short.'),
+			1 => throw new Exception('Notes are too long (2000 character limit).'),
+		};
+	}
 }
 
 // Checks if provided string is at least as long than min_length and at least as short as 

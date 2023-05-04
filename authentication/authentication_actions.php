@@ -66,8 +66,43 @@ function addUser(string $username, string $password): void {
 }
 
 // Deletes a user from the database.
-function deleteUser(int $id): void {
+function deleteUser(int $id, string $password): void {
 	global $pdo;
+
+	$stored_password_hash = NULL;
+
+	$query = 'SELECT password FROM users WHERE (id = :id)';
+	$values = array(':id' => $id);
+	
+	try {
+		$res = $pdo->prepare($query);
+		$res->execute($values);
+	}
+	catch (PDOException $e) {
+		throw new Exception('Database query error.');
+	}
+	
+	$row = $res->fetch(PDO::FETCH_ASSOC);
+	
+	if (is_array($row)) {
+		$stored_password_hash = $row['password'];
+	}
+
+	if (!password_verify($password, $stored_password_hash)) {
+		throw new Exception('Incorrect password.');
+	}
+
+	$query = 'DELETE FROM books WHERE (id_user = :id)';
+	
+	$values = array(':id' => $id);
+	
+	try {
+		$res = $pdo->prepare($query);
+		$res->execute($values);
+	}
+	catch (PDOException $e) {
+	   throw new Exception('Error deleting user data.');
+	}
 	
 	$query = 'DELETE FROM users WHERE (id = :id)';
 	
@@ -78,7 +113,70 @@ function deleteUser(int $id): void {
 		$res->execute($values);
 	}
 	catch (PDOException $e) {
-	   throw new Exception('Database query error.');
+	   throw new Exception('User data was deleted, error deleting user.');
+	}
+}
+
+// Edits the user's username in the database.
+function changeUsername(int $id, string $new_username): void {
+	if (!isUsernameValid($new_username)) throw new Exception('Invalid new username.');
+	
+	global $pdo;
+
+	$query = 'UPDATE users SET username = :new_username WHERE id = :id;';
+	
+	$values = array(':new_username' => $new_username, ':id' => $id);
+	
+	try {
+		$res = $pdo->prepare($query);
+		$res->execute($values);
+	}
+	catch (PDOException $e) {
+		throw new Exception('Error changing username.');
+	}
+}
+
+// Edits the user's password in the database. Requires old password for verification.
+function changePassword(int $id, string $old_password, string $new_password): void {
+	if (!isPasswordValid($new_password)) throw new Exception('Invalid new password.');
+
+	global $pdo;
+
+	$stored_password_hash = NULL;
+
+	$query = 'SELECT password FROM users WHERE (id = :id)';
+	$values = array(':id' => $id);
+	
+	try {
+		$res = $pdo->prepare($query);
+		$res->execute($values);
+	}
+	catch (PDOException $e) {
+		throw new Exception('Database query error.');
+	}
+	
+	$row = $res->fetch(PDO::FETCH_ASSOC);
+	
+	if (is_array($row)) {
+		$stored_password_hash = $row['password'];
+	}
+
+	if (!password_verify($old_password, $stored_password_hash)) {
+		throw new Exception('Incorrect old password.');
+	}
+
+	$hash = password_hash($new_password, PASSWORD_DEFAULT);
+	$query = 'UPDATE users SET password = :hash WHERE id = :id;';
+	
+	$values = array(':hash' => $hash, ':id' => $id);
+	
+	try {
+		$res = $pdo->prepare($query);
+		$res->execute($values);
+	}
+	catch (PDOException $e) {
+		throw new Exception($e->getMessage());
+		//throw new Exception('Error changing password.');
 	}
 }
 
@@ -128,7 +226,7 @@ function isPasswordValid(string $password): bool {
 	$valid = TRUE;
 	
 	$length = mb_strlen($password);
-	if (($length < 8) || ($length > 16))
+	if (($length < 8) || ($length > 64))
 	{
 		$valid = FALSE;
 	}
