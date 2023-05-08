@@ -36,9 +36,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		try {
 			$old_password = validate_input($_POST['old-password']);
 			$new_password = validate_input($_POST['new-password']);
+			$new_password_veficiation = validate_input($_POST['new-password-verification']);
+
+			if ($new_password != $new_password_veficiation) {
+				throw new Exception('Passwords do not match.');
+			}
 
 			changePassword($_SESSION['user']->getId(), $old_password, $new_password);
-			$success = 'Username successfully changed.';
+			$success = 'Password successfully changed.';
 		}
 		catch (Exception $e) {
 			$error = $e->getMessage();
@@ -93,6 +98,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<div>
 				<label for="new-password">New password: </label>
 				<input type="password" name="new-password" id="new-password" required>
+			</div>
+			<div>
+				<label for="new-password-verification">New password again: </label>
+				<input type="password" name="new-password-verification" id="new-password-verification" required>
 			</div>
 			<button type="submit" name="change-password">Change</button>
 		</form>

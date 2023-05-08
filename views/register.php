@@ -23,10 +23,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$data = [
 		"username" => validate_input($_POST["username"]),
 		"password" => validate_input($_POST["password"]),
+		"password-verification" => validate_input($_POST["password-verification"]),
 	];
 
 	try
 	{
+		if ($data['password'] != $data['password-verification']) {
+			throw new Exception('Passwords do not match.');
+		}
+
 		addUser($data['username'], $data['password']);
 		header('Location: ./login.php?registered');
 		exit();
@@ -58,6 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<div>
 				<label for="password">Password: </label>
 				<input type="password" name="password" id="password" required>
+			</div>
+			<div>
+				<label for="password-verification">Password again: </label>
+				<input type="password" name="password-verification" id="password-verification" required>
 			</div>
 			<button type="sumbit" name="submit">Register</button>
 		</form>
