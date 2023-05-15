@@ -1,0 +1,67 @@
+h1 {
+    padding: 0;
+    margin: 0;
+    
+    font-size: 8rem;
+}
+
+a {
+    width: 100%;
+    padding: 1.5rem;
+    margin-top: 2rem;
+
+    border: .2rem solid;
+    border-radius: 10rem;
+
+    text-decoration: none;
+    text-align: center;
+
+    color: rgb(37, 89, 89);
+
+    transition: background-color 0.3s ease;
+
+    font-size: 2.3rem;
+}
+
+a:hover {
+    color: white;
+    background-color: rgb(37, 89, 89);
+    border-color: rgb(37, 89, 89);
+
+    transition: background-color 0.3s ease;
+}
+
+body {
+    height: 100%;
+    
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 25rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+@media screen and (min-width: 62rem) {
+    a {
+        padding: .5rem;
+        margin: 1rem;
+    }
+    .container {
+        width: 50rem;
+        flex-direction: row;
+    }
+}

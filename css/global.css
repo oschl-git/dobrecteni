@@ -1,10 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;0,7..72,800;0,7..72,900;1,7..72,200;1,7..72,300;1,7..72,400;1,7..72,500;1,7..72,600;1,7..72,700;1,7..72,800;1,7..72,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
 
 html {
-	background-color: darkslategrey;
-	color: orangered;
+	height: 100%;
+	width: 100%;
+
+	padding: 0;
+	margin: 0;
+
+	font-family: 'Roboto', sans-serif;
 }
 
-html, input, button, select, textarea {
+h1 {
 	font-family: 'Literata', serif;
+	letter-spacing: .2rem;
+	font-weight: 300;
+}
+
+a {
+	text-transform: lowercase;
+}
+
+span {
+	font-weight: 900;
+}
+
+body.light {
+	background-color: rgb(241, 240, 234);
+}
+
+body.dark {
+	background-color: rgb(4, 8, 15);
 }

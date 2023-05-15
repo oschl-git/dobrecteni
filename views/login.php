@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="cs">
 	<head>
 		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/login.css">
 	</head>
 	<body>
 		<!-- Shows backend feedback: -->
