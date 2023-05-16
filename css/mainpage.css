@@ -1,8 +1,14 @@
 h1 {
     padding: 0;
     margin: 0;
-    
+
+    font-weight: 300;
     font-size: 8rem;
+}
+
+
+h1 span {
+    font-weight: 900;
 }
 
 a {
@@ -16,7 +22,7 @@ a {
     text-decoration: none;
     text-align: center;
 
-    color: rgb(37, 89, 89);
+    color: rgb(31, 111, 140);
 
     transition: background-color 0.3s ease;
 
@@ -25,8 +31,8 @@ a {
 
 a:hover {
     color: white;
-    background-color: rgb(37, 89, 89);
-    border-color: rgb(37, 89, 89);
+    background-color: rgb(31, 111, 140);
+    border-color: rgb(31, 111, 140);
 
     transition: background-color 0.3s ease;
 }
@@ -48,20 +54,21 @@ body {
 
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-
+    align-items: center;
 }
 
 
 
-@media screen and (min-width: 62rem) {
+@media screen and (min-width: 61.26rem) {
     a {
         padding: .5rem;
         margin: 1rem;
+
+        font-size: 1.42rem;
     }
     .container {
-        width: 50rem;
+        width: 40rem;
         flex-direction: row;
     }
 }

@@ -25,11 +25,10 @@
 
 		<script>
 			if (localStorage.getItem('theme') == null) {
-    		localStorage.setItem('theme', 'light');
-    		theme = localStorage.getItem('theme');
+    			localStorage.setItem('theme', 'light');
+    			theme = localStorage.getItem('theme');
 			}
 		</script>
 		<script src="javascript/theme.js"></script>
-		<script src="javascript/logo.js"></script>
 	</body>
 </html>

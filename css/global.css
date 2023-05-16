@@ -16,7 +16,6 @@ html {
 h1 {
 	font-family: 'Literata', serif;
 	letter-spacing: .2rem;
-	font-weight: 300;
 }
 
 a {
@@ -27,10 +26,25 @@ span {
 	font-weight: 900;
 }
 
+
+
+/*Light/dark theme*/
+.light {
+	color: rgb(3, 0, 30);
+}
+
+.dark {
+	color: rgb(241, 240, 234);
+}
+
 body.light {
 	background-color: rgb(241, 240, 234);
 }
 
 body.dark {
 	background-color: rgb(4, 8, 15);
+}
+
+.dark a {
+	color: rgb(96, 196, 232);
 }
