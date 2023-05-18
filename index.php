@@ -15,9 +15,9 @@
 
 
 		
-		<h1>dobré<span>čtení</span></h1>
+		<h1 class="logo">dobré<span>čtení</span></h1>
 		<div class="container">
-			<a href="views/login.php">Login</a>
+			<a href="views/login.php" id="login">Login</a>
 			<a href="views/register.php">Register</a>
 		</div>
 		

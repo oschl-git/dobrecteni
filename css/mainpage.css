@@ -1,48 +1,69 @@
-h1 {
+
+
+h1.logo {
     padding: 0;
     margin: 0;
 
-    font-weight: 300;
-    font-size: 8rem;
-}
-
-
-h1 span {
-    font-weight: 900;
+    font-size: 120px; /*8rem*/
 }
 
 a {
     width: 100%;
-    padding: 1.5rem;
-    margin-top: 2rem;
+    padding: 15px; /*1.25rem*/
+    margin-top: 30px; /*2rem*/
 
-    border: .2rem solid;
-    border-radius: 10rem;
+    border: .15rem solid; /*.15rem*/
+    border-radius: 10rem; /*10rem*/
 
     text-decoration: none;
+    text-transform: lowercase;
     text-align: center;
-
-    color: rgb(31, 111, 140);
 
     transition: background-color 0.3s ease;
 
-    font-size: 2.3rem;
+    font-size: 40px; /*2.3rem*/
 }
 
-a:hover {
+.light #login {
     color: white;
-    background-color: rgb(31, 111, 140);
-    border-color: rgb(31, 111, 140);
+    border-color: var(--light_btn);
+    background-color: var(--light_btn);
+}
 
+.dark #login {
+    color: black;
+    border-color: var(--dark_btn);
+    background-color: var(--dark_btn);
+}
+
+.light #login:hover {
+    background-color: hsl(var(--btn-h), var(--btn-s), 15%);
+    border-color: hsl(var(--btn-h), var(--btn-s), 15%);
+    transition: filter 0.3s ease;
+}
+
+.dark #login:hover {
+    color: white;
+    background-color: hsl(var(--btn-h), var(--btn-s), 35%);
+    border-color: hsl(var(--btn-h), var(--btn-s), 35%);
+    transition: filter 0.3s ease;
+}
+
+.light a:hover {
+    color: white;
+    background-color: var(--light_btn);
+	border-color: var(--light_btn);
+    transition: background-color 0.3s ease;
+}
+
+.dark a:hover {
+    color: black;
+    background-color: var(--dark_btn);
+	border-color: var(--dark_btn);
     transition: background-color 0.3s ease;
 }
 
 body {
-    height: 100%;
-    
-    padding: 0;
-    margin: 0;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,7 +71,7 @@ body {
 }
 
 .container {
-    width: 25rem;
+    width: 450px; /*25rem*/
 
     display: flex;
     flex-direction: column;
@@ -60,15 +81,15 @@ body {
 
 
 
-@media screen and (min-width: 61.26rem) {
+@media screen and (min-width: 1000px) { /*62.25rem*/
     a {
-        padding: .5rem;
-        margin: 1rem;
+        padding: 8px; /*.5rem*/
+        margin: 10px; /*1rem*/
 
-        font-size: 1.42rem;
+        font-size: 1.42rem; /*1.42rem*/
     }
     .container {
-        width: 40rem;
+        width: 650px; /*40rem*/
         flex-direction: row;
     }
 }

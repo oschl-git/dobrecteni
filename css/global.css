@@ -1,11 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;0,7..72,800;0,7..72,900;1,7..72,200;1,7..72,300;1,7..72,400;1,7..72,500;1,7..72,600;1,7..72,700;1,7..72,800;1,7..72,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+:root {
+	--light_bck: rgb(241, 240, 234);
+	--light_btn: hsl(var(--btn-h), var(--btn-s), 25%);
+	--light_txt: rgb(3, 0, 30);
 
+	--dark_bck: rgb(4, 8, 15);
+	--dark_btn: hsl(var(--btn-h), var(--btn-s), 50%);
+	--dark_txt: rgb(241, 240, 234);
 
-html {
+	--btn-h: 106; 
+	--btn-s: 19%;
+}
+
+html, body {
 	height: 100%;
-	width: 100%;
 
 	padding: 0;
 	margin: 0;
@@ -13,38 +23,53 @@ html {
 	font-family: 'Roboto', sans-serif;
 }
 
-h1 {
+h1.logo {
 	font-family: 'Literata', serif;
-	letter-spacing: .2rem;
+	font-weight: 300;
+	letter-spacing: 5px; /*.2rem*/
 }
 
-a {
-	text-transform: lowercase;
-}
-
-span {
+h1.logo span {
 	font-weight: 900;
 }
 
 
 
+
 /*Light/dark theme*/
-.light {
-	color: rgb(3, 0, 30);
+.light, .light h1 {
+	color: var(--light_txt);
 }
 
-.dark {
-	color: rgb(241, 240, 234);
+.dark, .dark h1 {
+	color: var(--dark_txt);
 }
 
 body.light {
-	background-color: rgb(241, 240, 234);
+	background-color: var(--light_bck);
 }
 
 body.dark {
-	background-color: rgb(4, 8, 15);
+	background-color: var(--dark_bck);
+}
+
+.light a {
+	color: var(--light_btn);
 }
 
 .dark a {
-	color: rgb(96, 196, 232);
+	color: var(--dark_btn);
 }
+
+/*
+.light :not(header) a:hover {
+	color: hsl(var(--btn-h), var(--btn-s), 15%);
+}
+
+.dark :not(header) a:hover {
+	color: hsl(var(--btn-h), var(--btn-s), 70%);
+}
+*/
+
+
+

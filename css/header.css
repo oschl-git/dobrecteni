@@ -1,0 +1,22 @@
+header {
+    width: 100%;
+
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1, header a {
+    text-decoration: none;
+
+    font-size: 100px; /*8rem*/
+}
+
+
+@media screen and (min-width: 1000px) {
+    header h1, header a {
+        font-size: 30px; /*8rem*/
+    }
+}
+

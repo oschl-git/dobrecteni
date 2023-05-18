@@ -70,5 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</div>
 			<button type="sumbit" name="submit">Register</button>
 		</form>
+		<a href="login.php">Already registered? Login here.</a>
 	</body>
 </html>

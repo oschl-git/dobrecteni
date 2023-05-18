@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Handles the log-out POST request.
 	else if (isset($_POST['logout'])) {
 		$_SESSION['user'] = null;
-		header('Location: ./login.php');
+		header('Location: ../index.php');
 		exit();
 	}
 }
