@@ -80,7 +80,13 @@ body.dark {
 }
 
 .dark button {
+	background-color: var(--dark_btn);
+}
 
+.dark button:hover {
+	color: var(--dark_txt);
+	border-color: var(--dark_btn_hover);
+	background-color: var(--dark_btn_hover);
 }
 
 .light input {
@@ -92,7 +98,9 @@ body.dark {
 }
 
 .dark input {
+	color: white;
 	border-color: var(--dark_btn);
+	background-color: var(--dark_bck);
 }
 
 .dark input:active {
