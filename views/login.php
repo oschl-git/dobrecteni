@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<head>
 		<link rel="stylesheet" href="../css/global.css">
 		<link rel="stylesheet" href="../css/header.css">
-		<link rel="stylesheet" href="../css/login.css">
+		<link rel="stylesheet" href="../css/login-register.css">
 	</head>
 	<body>
 		<!-- Shows backend feedback: -->
@@ -61,8 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<h2>Login page</h2>
 				<div>
 					<input type="text" name="username" id="username" placeholder="username" required>
-				</div>
-				<div>
 					<input type="password" name="password" id="password" placeholder="password" required>
 				</div>
 				<button type="sumbit" name="submit">Login</button>

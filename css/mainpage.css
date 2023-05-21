@@ -9,11 +9,11 @@ h1.logo {
 
 a {
     width: 100%;
-    padding: 15px; /*1.25rem*/
-    margin-top: 30px; /*2rem*/
+    padding: 1.25rem;
+    margin-top: 2rem;
 
-    border: .15rem solid; /*.15rem*/
-    border-radius: 10rem; /*10rem*/
+    border: .12rem solid; 
+    border-radius: 10rem;
 
     text-decoration: none;
     text-transform: lowercase;
@@ -39,28 +39,24 @@ a {
 .light #login:hover {
     background-color: hsl(var(--btn-h), var(--btn-s), 15%);
     border-color: hsl(var(--btn-h), var(--btn-s), 15%);
-    transition: filter 0.3s ease;
 }
 
 .dark #login:hover {
     color: white;
     background-color: hsl(var(--btn-h), var(--btn-s), 35%);
     border-color: hsl(var(--btn-h), var(--btn-s), 35%);
-    transition: filter 0.3s ease;
 }
 
 .light a:hover {
     color: white;
     background-color: var(--light_btn);
 	border-color: var(--light_btn);
-    transition: background-color 0.3s ease;
 }
 
 .dark a:hover {
     color: black;
     background-color: var(--dark_btn);
 	border-color: var(--dark_btn);
-    transition: background-color 0.3s ease;
 }
 
 body {

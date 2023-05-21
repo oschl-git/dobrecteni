@@ -4,11 +4,15 @@
 :root {
 	--light_bck: rgb(241, 240, 234);
 	--light_btn: hsl(var(--btn-h), var(--btn-s), 25%);
+	--light_btn_hover: hsl(var(--btn-h), var(--btn-s), 15%);
 	--light_txt: rgb(3, 0, 30);
 
 	--dark_bck: rgb(4, 8, 15);
 	--dark_btn: hsl(var(--btn-h), var(--btn-s), 50%);
+	--dark_btn_hover: hsl(var(--btn-h), var(--btn-s), 35%);
 	--dark_txt: rgb(241, 240, 234);
+
+	
 
 	--btn-h: 106; 
 	--btn-s: 19%;
@@ -33,6 +37,11 @@ h1.logo span {
 	font-weight: 900;
 }
 
+
+a, button {
+	transition: filter 0.3s ease;
+	transition: background-color 0.3s ease;
+}
 
 
 
@@ -60,6 +69,37 @@ body.dark {
 .dark a {
 	color: var(--dark_btn);
 }
+
+.light button {
+	color: var(--dark_txt);
+	background-color: var(--light_btn);
+}
+
+.light button:hover {
+	background-color: var(--light_btn_hover);
+}
+
+.dark button {
+
+}
+
+.light input {
+	border-color: var(--light_btn);
+}
+
+.light input:focus {
+	border-color: var(--light_btn_hover);
+}
+
+.dark input {
+	border-color: var(--dark_btn);
+}
+
+.dark input:active {
+	border-color: var(--dark_btn_hover);
+}
+
+
 
 /*
 .light :not(header) a:hover {
