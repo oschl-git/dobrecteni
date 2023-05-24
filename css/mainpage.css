@@ -1,16 +1,28 @@
+main {
+    width: 100%;
+    height: 100%;
 
-
-h1.logo {
-    padding: 0;
-    margin: 0;
-
-    font-size: 120px; /*8rem*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-a {
+#container-login-register {
     width: 100%;
-    padding: 1.25rem;
-    margin-top: 2rem;
+    max-width: 20rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#container-login-register a {
+    width: 90%;
+
+    padding: 0.5rem;
+    margin: .8rem;
 
     border: .12rem solid; 
     border-radius: 10rem;
@@ -21,9 +33,41 @@ a {
 
     transition: background-color 0.3s ease;
 
-    font-size: 40px; /*2.3rem*/
+    font-size: 2rem;
 }
 
+.logo {
+    width: 100%;
+    text-align: center;
+}
+
+.logo h1 {
+    font-size: 3rem;
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .logo h1 {
+        font-size: 8rem;
+    }
+
+    #container-login-register {
+        max-width: 40rem;
+        flex-direction: row;
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+    .logo h1 {
+        font-size: 2rem;
+    }
+}
+
+
+
+/*Light/dark theme*/
 .light #login {
     color: white;
     border-color: var(--light_btn);
@@ -57,35 +101,4 @@ a {
     color: black;
     background-color: var(--dark_btn);
 	border-color: var(--dark_btn);
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.container {
-    width: 450px; /*25rem*/
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
-@media screen and (min-width: 1000px) { /*62.25rem*/
-    a {
-        padding: 8px; /*.5rem*/
-        margin: 10px; /*1rem*/
-
-        font-size: 1.42rem; /*1.42rem*/
-    }
-    .container {
-        width: 650px; /*40rem*/
-        flex-direction: row;
-    }
 }

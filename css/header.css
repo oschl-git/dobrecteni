@@ -7,16 +7,9 @@ header {
     align-items: center;
 }
 
-header h1, header a {
+header a {
+    margin: 1rem;
+
     text-decoration: none;
-
-    font-size: 7rem; /*8rem*/
+    font-size: 1rem;
 }
-
-
-@media screen and (min-width: 1000px) {
-    header h1, header a {
-        font-size: 2rem;
-    }
-}
-

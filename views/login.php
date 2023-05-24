@@ -39,9 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="cs">
 	<head>
-		<link rel="stylesheet" href="../css/global.css">
-		<link rel="stylesheet" href="../css/header.css">
+		<script src="../javascript/head.js"></script>
 		<link rel="stylesheet" href="../css/login-register.css">
+		<title>dobréčtení - register</title>
 	</head>
 	<body>
 		<!-- Shows backend feedback: -->
@@ -56,18 +56,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<a href="../index.php"><h1 class="logo">dobré<span class="logo">čtení</span></h1></a>
 		</header>
 
-		<div class="container">
+		<main>
 			<form method="POST" name="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 				<h2>Login page</h2>
 				<div>
 					<input type="text" name="username" id="username" placeholder="username" required>
 					<input type="password" name="password" id="password" placeholder="password" required>
+					<button type="sumbit" name="submit">Login</button>
 				</div>
-				<button type="sumbit" name="submit">Login</button>
 				<a href="register.php">Register here.</a>
 			</form>
-		</div>
-		
+		</main>
 		
 		<script src="../javascript/theme.js"></script>
 	</body>

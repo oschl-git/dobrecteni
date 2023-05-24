@@ -10,7 +10,7 @@ const containers = {
 	edit: document.querySelector('#edit-container'),
 	delete: document.querySelector('#delete-container'),
 	add: document.querySelector('#add-container'),
-}
+};
 
 const detailsFields = {
 	name: document.querySelector('#details-name'), 
@@ -68,6 +68,7 @@ function showBoooksFromArray(array) {
 function showBook(book, index) {
 	bookTable.innerHTML += `
 		<tr>
+			
 			<td>` + String(book['name']) + `</td>
 			<td>` + String(book['author']) + `</td>
 			<td>` + String(book['genre']) + `</td>
