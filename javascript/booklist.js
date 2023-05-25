@@ -6,6 +6,7 @@
 const bookTable = document.querySelector('#book-table');
 
 const containers = {
+	window: document.querySelector('#window'),
 	details: document.querySelector('#details-container'),
 	edit: document.querySelector('#edit-container'),
 	delete: document.querySelector('#delete-container'),
@@ -22,7 +23,8 @@ const detailsFields = {
 	datePublished: document.querySelector('#details-date'), 
 	pages: document.querySelector('#details-pages'), 
 	notes: document.querySelector('#details-notes'),
-	cover: document.querySelector('#details-cover'),
+	cover_w: document.querySelector('#details-cover-w'),
+	cover_s: document.querySelector('#details-cover-s'),
 };
 
 const editFields = {
@@ -68,13 +70,15 @@ function showBoooksFromArray(array) {
 function showBook(book, index) {
 	bookTable.innerHTML += `
 		<tr>
-			
-			<td>` + String(book['name']) + `</td>
-			<td>` + String(book['author']) + `</td>
-			<td>` + String(book['genre']) + `</td>
-			<td>` + String(book['rating']) + `</td>
-			<td>` + String(book['read']) + `</td>
-			<td>
+			<td class="td-cover"><img src="` + String(getCoverSrcFromIsbn(book['cover'], 'M')) + `" alt="Book cover image" onerror="getCoverNotFound(this)"></td>
+			<td class="td-items">
+				<h4>` + String(book['name']) + `</h4>
+				<p>` + String(book['author']) + `</p>
+				<p>` + String(book['genre']) + `</p>
+				<p>` + String(book['rating']) + `<img src="../images/star.png" alt="stars" style="height: 1.2rem;"></p>
+				<p>` + String(book['read']) + `</p>
+			</td>
+			<td class="td-btns">
 				<button type="button" data-book-index="` + index + `" onclick="showDetails(this)">Details</button>
 				<button type="button" data-book-index="` + index + `" onclick="editBook(this)">Edit</button>
 				<button type="button" data-book-index="` + index + `" onclick="deleteBook(this)">Delete</button>
@@ -97,7 +101,8 @@ function showDetails(clickedElement = null) {
 	detailsFields['pages'].innerHTML = currentBook['pages'];
 	detailsFields['notes'].innerHTML = currentBook['notes'];
 
-	detailsFields['cover'].setAttribute('src', getCoverSrcFromIsbn(currentBook['isbn'], 'M'));
+	detailsFields['cover_w'].setAttribute('src', getCoverSrcFromIsbn(currentBook['isbn'], 'M'));
+	detailsFields['cover_s'].setAttribute('src', getCoverSrcFromIsbn(currentBook['isbn'], 'M'));
 
 	showContainer('details');
 }
@@ -143,6 +148,7 @@ function addBook(clickedElement) {
 // 'block'.
 function showContainer(name) {
 	hideAllContainers();
+	containers['window'].style.display = 'block';
 	containers[name].style.display = 'block';
 }
 
@@ -151,10 +157,21 @@ function hideAllContainers() {
 	for (const container of Object.values(containers)) {
 		container.style.display = 'none';
 	}
+
+	containers['window'].style.display = 'none';
 }
 
 // Returns the cover for the provided ISBN, if it exist. Size can be specified. Possible values: 
 // 'S', 'M', 'L'.
 function getCoverSrcFromIsbn(isbn, size) {
-	return 'https://covers.openlibrary.org/b/isbn/' + isbn + '-' + size + '.jpg?default=false';
+	return 'https://covers.openlibrary.org/b/isbn/' + String(isbn) + '-' + String(size) + '.jpg?default=false';
 }
+
+//Returns default cover image if the cover by ISBN number has not been found
+function getCoverNotFound(img) {
+	img.onerror = null;
+	if (localStorage.getItem('theme') == 'dark') img.src = '../images/covernotfound-dark.png';
+	else img.src = '../images/covernotfound-light.png';
+}
+
+

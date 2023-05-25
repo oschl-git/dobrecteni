@@ -96,6 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<a href="../index.php"><h1 class="logo">dobré<span class="logo">čtení</span></h1></a>
 		</header>
 
+
+
 		<main>
 			<section id="user">
 				<form method="POST" name="logout" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -103,7 +105,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<button type="sumbit" name="logout" id="logout">Logout</button>
 				</form>
 			</section>
+			<section id="menu">
+				<div>
+					<button type="button" onclick="addBook(this)">+ Add book</button>
+					<div id="sorter">
+						<h4>Sort by:</h4>
+						<select name="sort" id="sort">
+							<option value="name">Name</option>
+							<option value="author">Author</option>
+							<option value="author">Genre</option>
+							<option value="author">Rating</option>
+							<option value="author">Read</option>
+						</select>
+					</div>				
+				</div>
+			</section>
 			
+
 
 			<!-- Shows backend feedback: -->
 			<?php if (isset($error)) { ?>
@@ -116,7 +134,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			
 
 			<table id="book-table">
-				<tr>
+				<tr id="book-table-titles" style="display: none;">
+					<th>Cover</th>
 					<th>Name</th>
 					<th>Author</th>
 					<th>Genre</th>
@@ -126,155 +145,168 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				</tr>
 			</table>
 
-			<button type="button" onclick="addBook(this)">+ Add book</button>
+			
+
 
 
 			<!-- Container for showing book details. -->
-			<div id="details-container" style="display: none">
-				<h1>Book details</h1>
-				<p>Name: <span id="details-name"></span></p>
-				<p>Author: <span id="details-author"></span></p>
-				<p>Genre: <span id="details-genre"></span></p>
-				<p>Read: <span id="details-read"></span></p>
-				<p>Rating: <span id="details-rating"></span></p>
-				<p>ISBN: <span id="details-isbn"></span></p>
-				<p>Date published: <span id="details-date"></span></p>
-				<p>Pages: <span id="details-pages"></span></p>
-				<p>Notes: <span id="details-notes"></span></p>
-				<img id="details-cover" src="" alt="Cover image">
-				<button type="button" onclick="editBook()">Edit</button>
-				<button type="button" onclick="hideAllContainers()">Close</button>
-			</div>
+			<div id="window" style="display: none;">
+				<div id="details-container" style="display: none;">
+					<img id="details-cover-w" src="" alt="Cover image" style="display: none;">
+					<div>
+						<h2>Book details</h2>
+						<p>Name: <span id="details-name"></span></p>
+						<p>Author: <span id="details-author"></span></p>
+						<p>Genre: <span id="details-genre"></span></p>
+						<p>Read: <span id="details-read"></span></p>
+						<p>Rating: <span id="details-rating"></span></p>
+						<p>ISBN: <span id="details-isbn"></span></p>
+						<p>Date published: <span id="details-date"></span></p>
+						<p>Pages: <span id="details-pages"></span></p>
+						<p>Notes: <span id="details-notes"></span></p>
+					</div>
+					<div id="img-short">
+						<img id="details-cover-s" src="" alt="Cover image">
+					</div>
+					<div class="buttons">
+						<button type="button" onclick="editBook()">Edit</button>
+						<button type="button" onclick="hideAllContainers()">Close</button>
+					</div>	
+				</div>
 
-
-			<!-- Container for editing books. -->
-			<div id="edit-container" style="display: none">
-				<h1>Book editing</h1>
-				<form method="POST" name="edit-book" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-					<div>
-						<label for="edit-name">Name*: </label>
-						<input type="text" name="edit-name" id="edit-name" required>
-					</div>
-					<div>
-						<label for="edit-author">Author*: </label>
-						<input type="text" name="edit-author" id="edit-author" required>
-					</div>
-					<div>
-						<label for="edit-genre">Genre*: </label>
-						<input type="text" name="edit-genre" id="edit-genre" required>
-					</div>
-					<div>
+				<!-- Container for editing books. -->
+				<div id="edit-container" style="display: none;">
+					<h2>Book editing</h2>
+					<form method="POST" name="edit-book" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+						<div>
+							<label for="edit-name">Name*: </label>
+							<input type="text" name="edit-name" id="edit-name" required>
+						</div>
+						<div>
+							<label for="edit-author">Author*: </label>
+							<input type="text" name="edit-author" id="edit-author" required>
+						</div>
+						<div>
+							<label for="edit-genre">Genre*: </label>
+							<input type="text" name="edit-genre" id="edit-genre" required>
+						</div>
+						<div>
 						<label for="edit-read">Read*: </label>
-						<input type="checkbox" name="edit-read" id="edit-read">
-					</div>
-					<div>
-						<label for="edit-rating">Rating: </label>
-						<select name="edit-rating" id="edit-rating">
-							<option value="">No rating</option>
-							<option value="0">0 ★</option>
-							<option value="1">0.5 ★</option>
-							<option value="2">1 ★</option>
-							<option value="3">1.5 ★</option>
-							<option value="4">2 ★</option>
-							<option value="5">2.5 ★</option>
-							<option value="6">3 ★</option>
-							<option value="7">3.5 ★</option>
-							<option value="8">4 ★</option>
-							<option value="9">4.5 ★</option>
-							<option value="10">5 ★</option>
-						</select>
-					</div>
-					<div>
-						<label for="edit-isbn">ISBN (used for covers): </label>
-						<input type="text" name="edit-isbn" id="edit-isbn">
-					</div>
-					<div>
-						<label for="edit-date">Date published: </label>
-						<input type="date" name="edit-date" id="edit-date">
-					</div>
-					<div>
-						<label for="edit-pages">Number of pages: </label>
-						<input type="text" name="edit-pages" id="edit-pages">
-					</div>
-					<div>
-						<label for="edit-notes">Notes:</label>
-						<textarea id="edit-notes" name="edit-notes" rows="4" cols="50"></textarea> 
-					</div>
-					<input type="hidden" id="edit-book-id" name="edit-book-id" value="">
-					<button type="sumbit" name="edit-book">Edit</button>
-					<button type="button" onclick="hideAllContainers()">Cancel</button>
-				</form>
-			</div>
-			
+							<input type="checkbox" name="edit-read" id="edit-read">
+						</div>
+						<div>
+							<label for="edit-rating">Rating: </label>
+							<select name="edit-rating" id="edit-rating">
+								<option value="">No rating</option>
+								<option value="0">0 ★</option>
+								<option value="1">0.5 ★</option>
+								<option value="2">1 ★</option>
+								<option value="3">1.5 ★</option>
+								<option value="4">2 ★</option>
+								<option value="5">2.5 ★</option>
+								<option value="6">3 ★</option>
+								<option value="7">3.5 ★</option>
+								<option value="8">4 ★</option>
+								<option value="9">4.5 ★</option>
+								<option value="10">5 ★</option>
+							</select>
+						</div>
+						<div>
+							<label for="edit-isbn">ISBN (used for covers): </label>
+							<input type="text" name="edit-isbn" id="edit-isbn">
+						</div>
+						<div>
+							<label for="edit-date">Date published: </label>
+							<input type="date" name="edit-date" id="edit-date">
+						</div>
+						<div>
+							<label for="edit-pages">Number of pages: </label>
+							<input type="text" name="edit-pages" id="edit-pages">
+						</div>
+						<div>
+							<label for="edit-notes">Notes:</label>
+							<textarea id="edit-notes" name="edit-notes" rows="4" cols="50"></textarea> 
+						</div>
+						<input type="hidden" id="edit-book-id" name="edit-book-id" value="">
+						<div class="buttons">
+							<button type="sumbit" name="edit-book">Edit</button>
+							<button type="button" onclick="hideAllContainers()">Cancel</button>
+						</div>
+					</form>
+				</div>
+				
+				<!-- Container for deleting books. -->
+				<div id="delete-container" style="display: none;">
+					<h2>Book deletion</h2>
+					<p>Are you sure you want to delete <span id="delete-name"></span>?</p>
+					<form method="POST" name="delete-book" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+						<input type="hidden" id="delete-book-id" name="delete-book-id" value="">
+						<div class="buttons">
+							<button type="sumbit" name="delete-book">Proceed</button>
+							<button type="button" onclick="hideAllContainers()">Cancel</button>
+						</div>
+					
+					</form>
+					
+				</div>
 
-			<!-- Container for deleting books. -->
-			<div id="delete-container" style="display: none">
-				<h1>Book deletion</h1>
-				<p>Are you sure you want to delete <span id="delete-name"></span>?</p>
-				<form method="POST" name="delete-book" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-					<button type="sumbit" name="delete-book">Proceed</button>
-					<input type="hidden" id="delete-book-id" name="delete-book-id" value="">
-				</form>
-				<button type="button" onclick="hideAllContainers()">Cancel</button>
-			</div>
-
-
-			<!-- Container for adding new books. -->
-			<div id="add-container" style="display: none">
-				<h1>Adding new book</h1>
-				<form method="POST" name="add-book" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-					<div>
-						<label for="add-name">Name*: </label>
-						<input type="text" name="add-name" id="add-name" required>
-					</div>
-					<div>
-						<label for="add-author">Author*: </label>
-						<input type="text" name="add-author" id="add-author" required>
-					</div>
-					<div>
-						<label for="add-genre">Genre*: </label>
-						<input type="text" name="add-genre" id="add-genre" required>
-					</div>
-					<div>
-						<label for="add-read">Read*: </label>
-						<input type="checkbox" name="add-read" id="add-read">
-					</div>
-					<div>
-						<label for="add-rating">Rating: </label>
-						<select name="add-rating" id="add-rating">
-							<option value="">No rating</option>
-							<option value="0">0 ★</option>
-							<option value="1">0.5 ★</option>
-							<option value="2">1 ★</option>
-							<option value="3">1.5 ★</option>
-							<option value="4">2 ★</option>
-							<option value="5">2.5 ★</option>
-							<option value="6">3 ★</option>
-							<option value="7">3.5 ★</option>
-							<option value="8">4 ★</option>
-							<option value="9">4.5 ★</option>
-							<option value="10">5 ★</option>
-						</select>
-					</div>
-					<div>
-						<label for="add-isbn">ISBN (used for covers): </label>
-						<input type="text" name="add-isbn" id="add-isbn">
-					</div>
-					<div>
-						<label for="add-date">Date published: </label>
-						<input type="date" name="add-date" id="add-date">
-					</div>
-					<div>
-						<label for="add-pages">Number of pages: </label>
-						<input type="text" name="add-pages" id="add-pages">
-					</div>
-					<div>
-						<label for="add-notes">Notes:</label>
-						<textarea id="add-notes" name="add-notes" rows="4" cols="50"></textarea> 
-					</div>
-					<button type="sumbit" name="add-book">Add</button>
-					<button type="button" onclick="hideAllContainers()">Cancel</button>
-				</form>
+				<!-- Container for adding new books. -->
+				<div id="add-container" style="display: none;">
+					<h2>Adding new book</h2>
+					<form method="POST" name="add-book" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+						<div>
+							<label for="add-name">Name*: </label>
+							<input type="text" name="add-name" id="add-name" required>
+						</div>
+						<div>
+							<label for="add-author">Author*: </label>
+							<input type="text" name="add-author" id="add-author" required>
+						</div>
+						<div>
+							<label for="add-genre">Genre*: </label>
+							<input type="text" name="add-genre" id="add-genre" required>
+						</div>
+						<div>
+							<label for="add-read">Read*: </label>
+							<input type="checkbox" name="add-read" id="add-read">
+						</div>
+						<div>
+							<label for="add-rating">Rating: </label>
+							<select name="add-rating" id="add-rating">
+								<option value="">No rating</option>
+								<option value="0">0 ★</option>
+								<option value="1">0.5 ★</option>
+								<option value="2">1 ★</option>
+								<option value="3">1.5 ★</option>
+								<option value="4">2 ★</option>
+								<option value="5">2.5 ★</option>
+								<option value="6">3 ★</option>
+								<option value="7">3.5 ★</option>
+								<option value="8">4 ★</option>
+								<option value="9">4.5 ★</option>
+								<option value="10">5 ★</option>
+							</select>
+						</div>
+						<div>
+							<label for="add-isbn">ISBN (used for covers): </label>
+							<input type="text" name="add-isbn" id="add-isbn">
+						</div>
+						<div>
+							<label for="add-date">Date published: </label>
+							<input type="date" name="add-date" id="add-date">
+						</div>
+						<div>
+							<label for="add-pages">Number of pages: </label>
+							<input type="text" name="add-pages" id="add-pages">
+						</div>
+						<div>
+							<label for="add-notes">Notes:</label>
+							<textarea id="add-notes" name="add-notes" rows="4" cols="50"></textarea> 
+						</div>
+						<button type="sumbit" name="add-book">Add</button>
+						<button type="button" onclick="hideAllContainers()">Cancel</button>
+					</form>
+				</div>
 			</div>
 		</main>
 

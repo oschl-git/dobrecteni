@@ -11,8 +11,6 @@ nebude líbit.
 
 - nezapomeň udělat sortování knížek.
 
-- vyřeš knihy, co nemají covery z toho API, dej jim nějaký default img
-
 - Rating, ISBN, pages a notes můžou být null (uživatel je nemusí vyplňovat.) UI s tím musí počítat.
 
 - Někde na tom webu dej credit OpenLibrary za jejich cover API.

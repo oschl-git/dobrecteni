@@ -1,21 +1,23 @@
 main {
 	width: 100%;
     height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-#user {
+/*Menu*/
+/*User + Logout*/
+#user, #menu {
     width: 100%;
+
+    margin: 0;
+    padding: 0;
+
     display: flex;
     justify-content: center;
 }
 
-form {
+#user form {
     width: 90%;
+    max-width: 60rem;
 
     display: flex;
     flex-direction: row;
@@ -23,8 +25,7 @@ form {
     align-items: center;
 }
 
-
-button {
+button, select, input,textarea {
     border: none;
     outline: none;
 
@@ -36,8 +37,268 @@ button {
 
 #logout {
     width: 5rem;
-    height: 3rem;
+    height: 2.25rem;
+}
+
+/*Addbook + Sort*/
+#menu > div {
+    width: 90%;
+    max-width: 60rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -1rem;
+}
+
+#menu > div > button {
+    height: 2.25rem;
+}
+
+#sorter {
+    display: flex;
+    align-items: center;
+}
+
+#sorter select {
+    height: 2rem;
+    padding: .2rem;
+    margin-left: 1rem;
 }
 
 
 
+
+
+
+
+/*Bookview*/
+#book-table {
+    width: 100%;
+}
+
+#book-table tr {
+    margin-bottom: 3rem;
+    max-width: 60rem;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.td-cover {
+    display: flex;
+    justify-content: center;
+}
+
+.td-cover img {
+    width: 100%;
+    max-width: 20rem;
+
+    border-radius: 1rem;
+}
+
+.td-items {
+    font-size: 1.2rem;
+}
+
+
+.td-items h4 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.td-items h4, .td-items p {
+    margin: .25rem;
+}
+
+
+.td-btns button {
+    width: 6rem;
+    height: 1.8rem;
+}
+
+
+
+
+
+
+/*Dialog*/
+#window {
+    width: 100%;
+    height: 100%;
+    
+    position: fixed;
+    
+    top: 0;
+    left: 0;
+    
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+}
+
+#window > div {
+    width: 90%;
+    max-width: 20rem;
+    
+    margin: auto;
+    padding: .5rem 1rem;
+    z-index: 250;
+
+    margin-top: 5rem;
+
+    border-radius: 1rem;
+}
+
+.light #window > div {
+    background-color: rgb(241, 240, 234);
+}
+
+.dark #window > div {
+    background-color: rgb(26, 26, 32);
+}
+
+#window h2 {
+    text-align: center;
+}
+
+#window img {
+    border-radius: .5rem;
+}
+
+.buttons {
+    width: 100%;
+
+    margin: .5rem 0;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttons button {
+    width: 40%;
+
+    font-size: 1.5rem;
+}
+
+
+
+#details-container p {
+    margin: .5rem;
+    padding: 0;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#details-container span {
+    font-weight: bold;
+    right: 0;
+}
+
+#details-container #details-notes {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+#edit-container form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#edit-container form div {
+    margin: .5rem;
+    
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#edit-container input {
+    padding: .25rem;
+}
+
+#edit-container .buttons {
+    width: 100%;
+
+    margin: .5rem 0;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+textarea {
+    border-radius: .3rem;
+}
+
+
+
+#delete-container {
+    text-align: center;
+}
+
+#delete-container form {
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+
+    
+}
+
+
+
+
+
+/*Responsivity*/
+@media screen and (min-width: 768px) {
+    #book-table tr {
+        width: 90%;
+        
+        margin: auto;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+
+        flex-direction: row;
+        justify-content: space-between;
+
+        border-bottom: .1rem solid rgb(222, 220, 209);
+    }
+
+    .td-cover img {
+        width: 8rem;
+        max-width: unset;
+    }
+
+    .td-btns, .td-items {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #window > div {
+        width: 100%;
+        max-width: 60rem;
+    }
+
+
+    #ddetails-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+
+    
+
+
+}
