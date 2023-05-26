@@ -110,12 +110,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<button type="button" onclick="addBook(this)">+ Add book</button>
 					<div id="sorter">
 						<h4>Sort by:</h4>
-						<select name="sort" id="sort">
-							<option value="name">Name</option>
+						<select name="sort" id="sort" onchange="setSort(value)">
+							<option value="name">Name ↓</option>
+							<option value="name_rev">Name ↑</option>
 							<option value="author">Author</option>
-							<option value="author">Genre</option>
-							<option value="author">Rating</option>
-							<option value="author">Read</option>
+							<option value="genre">Genre</option>
+							<option value="rating">Rating ↓</option>
+							<option value="rating_rev">Rating ↑</option>
 						</select>
 					</div>				
 				</div>
@@ -225,7 +226,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						</div>
 						<div>
 							<label for="edit-notes">Notes:</label>
-							<textarea id="edit-notes" name="edit-notes" rows="4" cols="50"></textarea> 
+							<textarea id="edit-notes" name="edit-notes" rows="4" cols="50" ></textarea> 
 						</div>
 						<input type="hidden" id="edit-book-id" name="edit-book-id" value="">
 						<div class="buttons">
@@ -303,10 +304,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							<label for="add-notes">Notes:</label>
 							<textarea id="add-notes" name="add-notes" rows="4" cols="50"></textarea> 
 						</div>
-						<button type="sumbit" name="add-book">Add</button>
-						<button type="button" onclick="hideAllContainers()">Cancel</button>
+						<div class="buttons">
+							<button type="sumbit" name="add-book">Add</button>
+							<button type="button" onclick="hideAllContainers()">Cancel</button>
+						</div>
 					</form>
 				</div>
+
 			</div>
 		</main>
 

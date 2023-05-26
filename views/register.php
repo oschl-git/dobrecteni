@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<!-- Shows backend feedback: -->
 		<?php if (isset($error)) { ?>
 		<p><?php echo $error ?></p>
-		<?php } ?>
+		<?php }?>
 
 		<header>
 			<a href="../index.php"><h1 class="logo">dobré<span class="logo">čtení</span></h1></a>
@@ -70,11 +70,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<button type="sumbit" name="submit">Register</button>
 				</div>
 				<a href="login.php">Already registered? Login here.</a>
+				<div>
+					<p>username must be >= 8 characters & <= 64 characters</p>
+					<p>password must be >= 2 characters & <= 64 characters</p>
+				</div>
 			</form>
 		</main>
 		
-
-
 		<script src="../javascript/theme.js"></script>
 	</body>
 </html>

@@ -25,7 +25,7 @@ main {
     align-items: center;
 }
 
-button, select, input,textarea {
+button, select, input, textarea {
     border: none;
     outline: none;
 
@@ -33,6 +33,11 @@ button, select, input,textarea {
     border-radius: 10rem;
 
     font-size: 1rem;
+}
+
+textarea {
+    border-radius: .3rem;
+    resize: none;
 }
 
 #logout {
@@ -185,6 +190,28 @@ button, select, input,textarea {
 
 
 
+
+#add-container form {
+    width: 100%;
+}
+
+#add-container div {
+    margin: .5rem;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#add-container input{
+    max-height: 1.5rem;
+}
+
+#add-container .buttons {
+    margin: 0;
+}
+
+
+
 #details-container p {
     margin: .5rem;
     padding: 0;
@@ -236,10 +263,6 @@ button, select, input,textarea {
     justify-content: space-around;
 }
 
-textarea {
-    border-radius: .3rem;
-}
-
 
 
 #delete-container {
@@ -251,7 +274,6 @@ textarea {
     
     display: flex;
     justify-content: center;
-
     
 }
 
@@ -286,16 +308,28 @@ textarea {
     }
 
     #window > div {
-        width: 100%;
+        width: 90%;
         max-width: 60rem;
     }
 
 
-    #ddetails-container {
+    #details-container {
         display: flex;
         flex-direction: row;
         justify-content: center;
     }
+
+    #edit-container div input, #add-container div input {
+        width: 30rem;
+        height: 1.5rem;
+    }
+
+    #edit-container textarea, #add-container textarea {
+        width: 30rem;
+        height: 5rem;
+    }
+
+
 
 
     

@@ -28,7 +28,11 @@
 			</div>
 		</main>
 		
-		
+
+
+		<footer>
+			<a href="https://openlibrary.org/">Book covers provided by OpenLibraryAPI</a>
+		</footer>
 
 		<script>
 			if (localStorage.getItem('theme') == null) {

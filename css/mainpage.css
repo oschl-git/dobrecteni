@@ -21,7 +21,7 @@ main {
 #container-login-register a {
     width: 90%;
 
-    padding: 0.5rem;
+    padding: 0.3rem;
     margin: .8rem;
 
     border: .12rem solid; 
@@ -45,6 +45,11 @@ main {
     font-size: 3rem;
 }
 
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
 
 
 @media screen and (min-width: 768px) {

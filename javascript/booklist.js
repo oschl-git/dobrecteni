@@ -47,6 +47,7 @@ const deleteFields = {
 
 // Variables:
 let currentBook;
+let sort;
 
 
 onLoadActions();
@@ -59,11 +60,62 @@ function onLoadActions() {
 
 // Displays books from the provided array on the page.
 function showBoooksFromArray(array) {
+	array.sort(compareBooks);
+
+	bookTable.innerHTML = '';
 	let index = 0;
 	for (const book of array) {
 		showBook(book, index);
 		index++;
 	}
+}
+
+// Sets sorting option
+function setSort(option) {
+	sort = option;
+	onLoadActions();
+}
+
+// Sorts book array depending on what the user has chosen.
+function compareBooks(a, b) {
+	let item1;
+	let item2;
+	
+	switch(sort) {
+		case "name":
+				item1 = a.name.toLowerCase();
+				item2 = b.name.toLowerCase();
+			break;
+		case "name_rev":
+				item2 = a.name.toLowerCase();
+				item1 = b.name.toLowerCase();
+			break;
+		case "author":
+				item1 = a.author.toLowerCase();
+				item2 = b.author.toLowerCase();
+			break;
+		case "genre":
+				item1 = a.genre.toLowerCase();
+				item2 = b.genre.toLowerCase();
+			break;
+		case "rating":
+				item2 = a.rating;
+				item1 = b.rating;
+			break;
+		case "rating_rev":
+				item1 = a.rating;
+				item2 = b.rating;
+			break;
+		
+		default:
+				sort = "name";
+				onLoadActions();
+			break;
+	}
+
+	if (item1 < item2) return -1;
+	if (item1 > item2) return 1;
+	return 0;
 }
 
 // Displays a single book on the page.
