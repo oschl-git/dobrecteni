@@ -1,0 +1,75 @@
+main {
+    width: 90%;
+    margin: auto;
+    padding-bottom: 1rem;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    margin: .25rem;
+}
+
+h5 {
+    max-width: 25rem;
+    margin: .25rem;
+
+    color: rgb(167, 57, 57);
+}
+
+form {
+    width: 100%;
+
+    margin-bottom: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}  
+
+form div {
+    width: 100%;
+    max-width: 30rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+input, button {
+    padding: .5rem;
+    margin: .2rem 0; 
+
+    border: none;
+    outline: none;
+
+    border: .12rem solid;
+    border-radius: 10rem;
+
+    font-size: 1rem;
+
+    background-color: var(--light_bck);
+}
+
+input {
+    padding-left: 1rem;
+}
+
+#theme {
+    width: 9rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#theme input {
+    width: 20px;
+    height: 20px;
+}
+
+

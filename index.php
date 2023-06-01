@@ -24,7 +24,7 @@
 			<div class="logo"><h1>dobré<span>čtení</span></h1></div>
 			<div id="container-login-register">
 				<a href="views/login.php" id="login">Login</a>
-				<a href="views/register.php">Register</a>
+				<a href="views/register.php" id="register">Register</a>
 			</div>
 		</main>
 		
@@ -34,12 +34,6 @@
 			<a href="https://openlibrary.org/">Book covers provided by OpenLibraryAPI</a>
 		</footer>
 
-		<script>
-			if (localStorage.getItem('theme') == null) {
-    			localStorage.setItem('theme', 'light');
-    			theme = localStorage.getItem('theme');
-			}
-		</script>
 		<script src="javascript/theme.js"></script>
 	</body>
 </html>

@@ -122,7 +122,7 @@ function compareBooks(a, b) {
 function showBook(book, index) {
 	bookTable.innerHTML += `
 		<tr>
-			<td class="td-cover"><img src="` + String(getCoverSrcFromIsbn(book['cover'], 'M')) + `" alt="Book cover image" onerror="getCoverNotFound(this)"></td>
+			<td class="td-cover"><img src="` + String(getCoverSrcFromIsbn(book['isbn'], 'M')) + `" alt="Book cover image" onerror="getCoverNotFound(this)"></td>
 			<td class="td-items">
 				<h4>` + String(book['name']) + `</h4>
 				<p>` + String(book['author']) + `</p>

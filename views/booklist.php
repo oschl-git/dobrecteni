@@ -102,7 +102,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<section id="user">
 				<form method="POST" name="logout" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 					<h2><?php echo htmlspecialchars($_SESSION['user']->getUsername()); ?>'s books:</h2>
-					<button type="sumbit" name="logout" id="logout">Logout</button>
+					<div>
+						<a href="settings.php" id="settings">Settings</a>
+						<button type="sumbit" name="logout" id="logout">Logout</button>
+					</div>
 				</form>
 			</section>
 			<section id="menu">
@@ -276,16 +279,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							<select name="add-rating" id="add-rating">
 								<option value="">No rating</option>
 								<option value="0">0 ★</option>
-								<option value="1">0.5 ★</option>
-								<option value="2">1 ★</option>
-								<option value="3">1.5 ★</option>
-								<option value="4">2 ★</option>
-								<option value="5">2.5 ★</option>
-								<option value="6">3 ★</option>
-								<option value="7">3.5 ★</option>
-								<option value="8">4 ★</option>
-								<option value="9">4.5 ★</option>
-								<option value="10">5 ★</option>
+								<option value="1">1 ★</option>
+								<option value="2">2 ★</option>
+								<option value="3">3 ★</option>
+								<option value="4">4 ★</option>
+								<option value="5">5 ★</option>
+								<option value="6">6 ★</option>
+								<option value="7">7 ★</option>
+								<option value="8">8 ★</option>
+								<option value="9">9 ★</option>
+								<option value="10">10 ★</option>
 							</select>
 						</div>
 						<div>

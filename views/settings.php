@@ -69,7 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="cs">
 	<head>
-		<link rel="stylesheet" href="../css/global.css">
+		<script src="../javascript/head.js"></script>
+		<link rel="stylesheet" href="../css/settings.css">
+		<title>dobréčtení - settings</title>
 	</head>
 	<body>
 		<!-- Shows backend feedback: -->
@@ -80,46 +82,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<p id="success-message" style="color: green"><?php echo $success ?></p>
 		<?php } ?>
 
-		<h1>Settings page</h1>
-		<form method="POST" name="change-username" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-			<h3>Change username</h3>	
-			<div>
-				<label for="new-username">New username: </label>
-				<input type="text" name="new-username" id="new-username" required>
-			</div>
-			<button type="submit" name="change-username">Change</button>
-		</form>
-		<form method="POST" name="change-password" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-			<h3>Change password</h3>
-			<div>
-				<label for="old-password">Verify old password: </label>
-				<input type="password" name="old-password" id="old-password" required>
-			</div>
-			<div>
-				<label for="new-password">New password: </label>
-				<input type="password" name="new-password" id="new-password" required>
-			</div>
-			<div>
-				<label for="new-password-verification">New password again: </label>
-				<input type="password" name="new-password-verification" id="new-password-verification" required>
-			</div>
-			<button type="submit" name="change-password">Change</button>
-		</form>
-		<div>
-			<h3>Dark theme</h3>
-			<div>
-				<label for="dark-theme">Use dark theme </label>
-				<input type="checkbox" name="dark-theme" id="dark-themes" required>
-			</div>
-		</div>
-		<form method="POST" name="delete-account" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-			<h3>Delete account</h3>
-			<h4>Warning: This action cannot be undone and will result in loss of all data connected to this account.</h4>
-			<div>
-				<label for="delete-password">Verify password: </label>
-				<input type="password" name="delete-password" id="delete-password" required>
-			</div>
-			<button type="submit" name="delete-account">Permanently delete account</button>
-		</form>
+		<header>
+			<a href="../index.php"><h1 class="logo">dobré<span class="logo">čtení</span></h1></a>
+		</header>
+
+		<main>
+			<h2>Settings page</h2>
+			<form method="POST" name="change-username" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+				<h3>Change username</h3>	
+				<div>
+					<input type="text" name="new-username" id="new-username" placeholder="new username" required>
+					<button type="submit" name="change-username">Change</button>
+				</div>
+			</form>
+			<form method="POST" name="change-password" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+				<h3>Change password</h3>
+				<div>
+					<input type="password" name="old-password" id="old-password" placeholder="verify old password" required>
+					<input type="password" name="new-password" id="new-password" placeholder="new password" required>
+					<input type="password" name="new-password-verification" id="new-password-verification" placeholder="new password again" required>
+					<button type="submit" name="change-password">Change</button>
+				</div>
+			</form>
+			<form action="">
+				<h3>Dark theme</h3>	
+				<div id="theme">
+					<label for="dark-theme">Use dark theme </label>
+					<input type="checkbox" name="dark-theme" id="dark-themes" onclick="changeTheme(this)" required>
+				</div>
+			</form>
+			<form method="POST" name="delete-account" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+				<h3>Delete account</h3>
+				<h5>Warning: This action cannot be undone and will result in loss of all data connected to this account.</h5>
+				<div>
+					<input type="password" name="delete-password" id="delete-password" placeholder="verify password" required>
+					<button type="submit" name="delete-account">Permanently delete account</button>
+				</div>
+			</form>
+		</main>
+	
+		<script>
+			if (localStorage.getItem('theme') == 'dark') document.getElementById('dark-themes').checked = true;
+		</script>
+		<script src="../javascript/theme.js"></script>
 	</body>
 </html>

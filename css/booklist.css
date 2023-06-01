@@ -45,6 +45,24 @@ textarea {
     height: 2.25rem;
 }
 
+#settings {
+    width: 5rem;
+    height: 2.25rem;
+
+    padding: 0.3rem 0.75rem;
+    margin: .8rem;
+
+    border: .12rem solid; 
+    border-radius: 10rem;
+
+    text-decoration: none;
+    text-align: center;
+
+    transition: background-color 0.3s ease;
+}
+
+
+
 /*Addbook + Sort*/
 #menu > div {
     width: 90%;
@@ -108,7 +126,6 @@ textarea {
 .td-items {
     font-size: 1.2rem;
 }
-
 
 .td-items h4 {
     font-size: 2rem;
@@ -293,7 +310,7 @@ textarea {
         flex-direction: row;
         justify-content: space-between;
 
-        border-bottom: .1rem solid rgb(222, 220, 209);
+        border-bottom: .1rem solid rgb(114, 113, 108);
     }
 
     .td-cover img {
@@ -336,3 +353,23 @@ textarea {
 
 
 }
+
+
+
+
+
+
+
+
+.light #settings:hover {
+    color: white;
+    background-color: var(--light_btn);
+    border-color: var(--light_btn);
+}
+
+.dark #settings:hover {
+    color: white;
+    background-color: var(--dark_btn);
+    border-color: var(--dark_btn);
+}
+
