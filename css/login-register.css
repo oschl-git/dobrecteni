@@ -51,10 +51,25 @@ input {
 }
 
 form a {
-    font-size: .8rem;
+    font-size: 1rem;
     text-decoration: none;
 }
 
 form a:hover {
     font-weight: bolder;
 }
+
+
+
+#constraints {
+    margin-top: 1rem;
+
+    font-size: .8rem;
+    text-align: center;
+}
+
+#constraints p {
+    margin: 0;
+    padding: 0;
+}
+

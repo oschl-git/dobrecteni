@@ -8,6 +8,7 @@ var htmlCode =
 <link rel="icon" href="../images/favicon.gif" type="image/x-icon">
 <link rel="stylesheet" href="../css/global.css">
 <link rel="stylesheet" href="../css/header.css">
+<link rel="stylesheet" href="../css/message.css">
 `;
 
 head.innerHTML += htmlCode;

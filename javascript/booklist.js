@@ -118,6 +118,18 @@ function compareBooks(a, b) {
 	return 0;
 }
 
+// Displays boolean "read" as word instead of true/false
+function readValueToWord(read) {
+	if (read == true) return "Read";
+	else return "Not read";
+}
+
+// Displays "Not rated" if rating var is null
+function noNullRating(rating) {
+	if (rating == null) return "Not rated";
+	else return rating +`<img src="../images/star.png" alt="stars" style="height: 1.2rem;"></p>`
+}
+
 // Displays a single book on the page.
 function showBook(book, index) {
 	bookTable.innerHTML += `
@@ -127,8 +139,8 @@ function showBook(book, index) {
 				<h4>` + String(book['name']) + `</h4>
 				<p>` + String(book['author']) + `</p>
 				<p>` + String(book['genre']) + `</p>
-				<p>` + String(book['rating']) + `<img src="../images/star.png" alt="stars" style="height: 1.2rem;"></p>
-				<p>` + String(book['read']) + `</p>
+				<p>` + String(noNullRating(book['rating'])) + `
+				<p>` + String(readValueToWord(book['read'])) + `</p>
 			</td>
 			<td class="td-btns">
 				<button type="button" data-book-index="` + index + `" onclick="showDetails(this)">Details</button>

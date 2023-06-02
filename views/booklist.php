@@ -129,10 +129,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 			<!-- Shows backend feedback: -->
 			<?php if (isset($error)) { ?>
-			<p id="error-message" style="color: red"><?php echo $error ?></p>
+			<div class="message">
+				<p id="error-message" style="color: red"><?php echo $error ?></p>
+			</div>
 			<?php } ?>
 			<?php if (isset($success)) { ?>
-			<p id="success-message" style="color: green"><?php echo $success ?></p>
+			<div class="message">
+				<p id="success-message" style="color: green"><?php echo $success ?></p>
+			</div>
 			<?php } ?>
 
 			
@@ -203,16 +207,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							<select name="edit-rating" id="edit-rating">
 								<option value="">No rating</option>
 								<option value="0">0 ★</option>
-								<option value="1">0.5 ★</option>
-								<option value="2">1 ★</option>
-								<option value="3">1.5 ★</option>
-								<option value="4">2 ★</option>
-								<option value="5">2.5 ★</option>
-								<option value="6">3 ★</option>
-								<option value="7">3.5 ★</option>
-								<option value="8">4 ★</option>
-								<option value="9">4.5 ★</option>
-								<option value="10">5 ★</option>
+								<option value="1">1 ★</option>
+								<option value="2">2 ★</option>
+								<option value="3">3 ★</option>
+								<option value="4">4 ★</option>
+								<option value="5">5 ★</option>
+								<option value="6">6 ★</option>
+								<option value="7">7 ★</option>
+								<option value="8">8 ★</option>
+								<option value="9">9 ★</option>
+								<option value="10">10 ★</option>
 							</select>
 						</div>
 						<div>

@@ -76,11 +76,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<body>
 		<!-- Shows backend feedback: -->
 		<?php if (isset($error)) { ?>
-		<p id="error-message" style="color: red"><?php echo $error ?></p>
+		<div class="message">
+			<p id="error-message" style="color: red"><?php echo $error ?></p>
+		</div>
 		<?php } ?>
 		<?php if (isset($success)) { ?>
-		<p id="success-message" style="color: green"><?php echo $success ?></p>
+		<div class="message">
+			<p id="success-message" style="color: green"><?php echo $success ?></p>
+		</div>
 		<?php } ?>
+
+		
 
 		<header>
 			<a href="../index.php"><h1 class="logo">dobré<span class="logo">čtení</span></h1></a>

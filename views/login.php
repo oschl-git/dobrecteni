@@ -46,16 +46,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<body>
 		<!-- Shows backend feedback: -->
 		<?php if (isset($error)) { ?>
-		<p><?php echo $error ?></p>
+		<div class="message">
+			<p style="color: red"><?php echo $error ?></p>
+		</div>
 		<?php } ?>
 		<?php if (isset($_GET['registered'])) { ?>
-		<p>Successfully registered. Please, log in.</p>
+		<div class="message">
+			<p style="color: green">Successfully registered. Please, log in.</p>
+		</div>
 		<?php } ?>
+
+
 
 		<header>
 			<a href="../index.php"><h1 class="logo">dobré<span class="logo">čtení</span></h1></a>
 		</header>
-
 		<main>
 			<form method="POST" name="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 				<h2>Login page</h2>
