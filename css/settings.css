@@ -73,3 +73,51 @@ input {
 }
 
 
+/*Na prasáka >:)*/
+#top {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#undertop {
+    width: 100%;
+    max-width: 30rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#return {
+    width: 5rem;
+
+    padding: 0.3rem;
+    margin: .8rem;
+
+    border: .12rem solid; 
+    border-radius: 10rem;
+
+    text-decoration: none;
+    text-align: center;
+
+    transition: background-color 0.3s ease;
+}
+
+
+
+.light #return:hover {
+    color: white;
+    background-color: var(--light_btn);
+    border-color: var(--light_btn);
+}
+
+.dark #return:hover {
+    color: white;
+    background-color: var(--dark_btn);
+    border-color: var(--dark_btn);
+}
+
+

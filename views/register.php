@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		<main>
 			<form method="POST" name="register-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-				<h2>Register page</h2>
+				<h2>Register</h2>
 				<div>
 					<input type="text" name="username" id="username" placeholder="username" required>
 					<input type="password" name="password" id="password" placeholder="password" required>

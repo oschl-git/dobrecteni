@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</header>
 		<main>
 			<form method="POST" name="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-				<h2>Login page</h2>
+				<h2>Login</h2>
 				<div>
 					<input type="text" name="username" id="username" placeholder="username" required>
 					<input type="password" name="password" id="password" placeholder="password" required>

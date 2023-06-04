@@ -177,8 +177,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<img id="details-cover-s" src="" alt="Cover image">
 					</div>
 					<div class="buttons">
+						<button type="button" onclick="hideAllContainers()">Close</button>	
 						<button type="button" onclick="editBook()">Edit</button>
-						<button type="button" onclick="hideAllContainers()">Close</button>
 					</div>	
 				</div>
 
@@ -237,8 +237,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						</div>
 						<input type="hidden" id="edit-book-id" name="edit-book-id" value="">
 						<div class="buttons">
-							<button type="sumbit" name="edit-book">Edit</button>
 							<button type="button" onclick="hideAllContainers()">Cancel</button>
+							<button type="sumbit" name="edit-book">Edit</button>		
 						</div>
 					</form>
 				</div>
@@ -250,8 +250,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<form method="POST" name="delete-book" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 						<input type="hidden" id="delete-book-id" name="delete-book-id" value="">
 						<div class="buttons">
-							<button type="sumbit" name="delete-book">Proceed</button>
 							<button type="button" onclick="hideAllContainers()">Cancel</button>
+							<button type="sumbit" name="delete-book">Proceed</button>
 						</div>
 					
 					</form>
@@ -312,8 +312,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							<textarea id="add-notes" name="add-notes" rows="4" cols="50"></textarea> 
 						</div>
 						<div class="buttons">
-							<button type="sumbit" name="add-book">Add</button>
 							<button type="button" onclick="hideAllContainers()">Cancel</button>
+							<button type="sumbit" name="add-book">Add</button>				
 						</div>
 					</form>
 				</div>

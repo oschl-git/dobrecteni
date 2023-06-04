@@ -93,7 +93,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</header>
 
 		<main>
-			<h2>Settings page</h2>
+			<div id="top">
+				<div id="undertop">
+					<h2>Settings</h2>
+					<a href="booklist.php" id="return">Return</a>
+				</div>
+			</div>
+			
 			<form method="POST" name="change-username" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 				<h3>Change username</h3>	
 				<div>
