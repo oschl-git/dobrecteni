@@ -114,13 +114,15 @@ textarea {
 .td-cover {
     display: flex;
     justify-content: center;
+
+    border-radius: 1rem;
 }
 
 .td-cover img {
     width: 100%;
     max-width: 20rem;
 
-    border-radius: 1rem;
+    border-radius: 1rem; 
 }
 
 .td-items {
@@ -156,17 +158,26 @@ textarea {
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 200;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #window > div {
-    width: 90%;
-    max-width: 20rem;
-    
-    margin: auto;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: scroll;
+}
+
+#window > div > div {
+    height: auto;
+    width: 100%;
+    max-width: 60rem;
+
     padding: .5rem 1rem;
     z-index: 250;
 
@@ -175,13 +186,15 @@ textarea {
     border-radius: 1rem;
 }
 
-.light #window > div {
+
+.light #window > div > div {
     background-color: rgb(241, 240, 234);
 }
 
-.dark #window > div {
+.dark #window > div > div{
     background-color: rgb(26, 26, 32);
 }
+
 
 #window h2 {
     text-align: center;
@@ -194,10 +207,10 @@ textarea {
 .buttons {
     width: 100%;
 
-    margin: .5rem 0;
+    margin: .75rem 0;
 
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .buttons button {
@@ -241,12 +254,21 @@ textarea {
 #details-container span {
     font-weight: bold;
     right: 0;
+
+    text-align: right;
 }
 
 #details-container #details-notes {
-    white-space: nowrap; 
+    word-wrap: normal;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: clip;
+    padding-right: 1rem;
+}
+
+#details-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -281,6 +303,15 @@ textarea {
     justify-content: space-around;
 }
 
+#edit-container input, #edit-container select, #edit-container textarea {
+    margin-right: 1rem;
+}
+
+#edit-rating {
+    height: 2rem;
+}
+
+
 
 
 #delete-container {
@@ -314,9 +345,18 @@ textarea {
         border-bottom: .1rem solid rgb(114, 113, 108);
     }
 
+    .td-cover {
+        align-items: center;
+    }
+
     .td-cover img {
         width: 8rem;
+        height: 12.09rem;
         max-width: unset;
+    }
+
+    .td-cover img {
+        object-fit: cover;
     }
 
     .td-btns, .td-items {
@@ -325,18 +365,34 @@ textarea {
         justify-content: center;
     }
 
+
+
     #window > div {
-        width: 90%;
-        max-width: 60rem;
+        overflow: hidden;
     }
 
 
-    #details-container {
+
+    #details-content {
+        width: 100%;
         display: flex;
-        flex-direction: row;
-        justify-content: center;
+        align-items: center;
     }
 
+    #details-text {
+        width: 100%;
+        max-width: 48.5rem;
+
+        overflow: hidden;
+    }
+
+    #details-notes {
+        max-width: 80%;
+        
+    }
+
+
+    
     #edit-container div input, #add-container div input {
         width: 30rem;
         height: 1.5rem;
@@ -347,7 +403,11 @@ textarea {
         height: 5rem;
     }
 
+    #edit-container .buttons {
+        justify-content: space-between;
+    }
 }
+
 
 
 

@@ -152,36 +152,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<th>Actions</th>
 				</tr>
 			</table>
+		</main>
 
-			
-
-
-
+		<!-- Container for dialogs -->
+		<div id="window" style="display: none;">
+			<div>
 			<!-- Container for showing book details. -->
-			<div id="window" style="display: none;">
 				<div id="details-container" style="display: none;">
-					<img id="details-cover-w" src="" alt="Cover image" style="display: none;">
-					<div>
-						<h2>Book details</h2>
-						<p>Name: <span id="details-name"></span></p>
-						<p>Author: <span id="details-author"></span></p>
-						<p>Genre: <span id="details-genre"></span></p>
-						<p>Read: <span id="details-read"></span></p>
-						<p>Rating: <span id="details-rating"></span></p>
-						<p>ISBN: <span id="details-isbn"></span></p>
-						<p>Date published: <span id="details-date"></span></p>
-						<p>Pages: <span id="details-pages"></span></p>
-						<p>Notes: <span id="details-notes"></span></p>
+					<h2>Book details</h2>
+					<div id="details-content">
+						<div id="details-text">
+							<p>Name: <span id="details-name"></span></p>
+							<p>Author: <span id="details-author"></span></p>
+							<p>Genre: <span id="details-genre"></span></p>
+							<p>Read: <span id="details-read"></span></p>
+							<p>Rating: <span id="details-rating"></span></p>
+							<p>ISBN: <span id="details-isbn"></span></p>
+							<p>Date published: <span id="details-date"></span></p>
+							<p>Pages: <span id="details-pages"></span></p>
+							<p>Notes: <span id="details-notes"></span></p>
+						</div>
+						<div id="details-img">
+							<img id="details-cover" src="" alt="Cover image">
+						</div>
 					</div>
-					<div id="img-short">
-						<img id="details-cover-s" src="" alt="Cover image">
-					</div>
+					
 					<div class="buttons">
 						<button type="button" onclick="hideAllContainers()">Close</button>	
 						<button type="button" onclick="editBook()">Edit</button>
 					</div>	
 				</div>
-
+				
 				<!-- Container for editing books. -->
 				<div id="edit-container" style="display: none;">
 					<h2>Book editing</h2>
@@ -199,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							<input type="text" name="edit-genre" id="edit-genre" required>
 						</div>
 						<div>
-						<label for="edit-read">Read*: </label>
+							<label for="edit-read">Read*: </label>
 							<input type="checkbox" name="edit-read" id="edit-read">
 						</div>
 						<div>
@@ -253,9 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							<button type="button" onclick="hideAllContainers()">Cancel</button>
 							<button type="sumbit" name="delete-book">Proceed</button>
 						</div>
-					
 					</form>
-					
 				</div>
 
 				<!-- Container for adding new books. -->
@@ -317,9 +316,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						</div>
 					</form>
 				</div>
-
 			</div>
-		</main>
+		</div>
 
 
 

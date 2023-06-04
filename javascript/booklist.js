@@ -23,8 +23,7 @@ const detailsFields = {
 	datePublished: document.querySelector('#details-date'), 
 	pages: document.querySelector('#details-pages'), 
 	notes: document.querySelector('#details-notes'),
-	cover_w: document.querySelector('#details-cover-w'),
-	cover_s: document.querySelector('#details-cover-s'),
+	cover: document.querySelector('#details-cover'),
 };
 
 const editFields = {
@@ -165,8 +164,7 @@ function showDetails(clickedElement = null) {
 	detailsFields['pages'].innerHTML = currentBook['pages'];
 	detailsFields['notes'].innerHTML = currentBook['notes'];
 
-	detailsFields['cover_w'].setAttribute('src', getCoverSrcFromIsbn(currentBook['isbn'], 'M'));
-	detailsFields['cover_s'].setAttribute('src', getCoverSrcFromIsbn(currentBook['isbn'], 'M'));
+	detailsFields['cover'].setAttribute('src', getCoverSrcFromIsbn(currentBook['isbn'], 'M'));
 
 	showContainer('details');
 }
